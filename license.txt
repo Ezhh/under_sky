@@ -1,0 +1,9 @@
+
+
+All original code for this mod:
+License: MIT (https://opensource.org/licenses/MIT)
+By Shara RedCat
+
+---
+
+With thanks to DonBatman and TenPlus1 for help with the original other_worlds skybox code, on which this is based.
