@@ -1,5 +1,5 @@
 
-local sky_start = 10 -- black skybox displays under this depth
+local sky_start = -100 -- black skybox displays under this depth
 
 local player_list = {} 
 
