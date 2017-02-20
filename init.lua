@@ -37,7 +37,7 @@ minetest.register_globalstep(function(dtime)
 		local pos = player:getpos()
 
 		pos.y = pos.y + 1.5 -- head level
-		head_node = node_ok(pos)
+		local head_node = node_ok(pos)
 
 		pos.y = pos.y - 1.5 -- reset pos
 
