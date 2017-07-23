@@ -58,11 +58,13 @@ minetest.register_globalstep(function(dtime)
 		-- Surface
 		if pos.y > sky_start and current ~= "surface" then
 			player:set_sky({}, "regular", {})
+			player:set_clouds({density = 0.4})
 			player_list[name] = "surface"
 
 		-- Everything else (blackness)
 		elseif pos.y < sky_start and current ~= "blackness" then
 			player:set_sky(000000, "plain", {})
+			player:set_clouds({density = 0})
 			player_list[name] = "blackness"
 		end
 	end
