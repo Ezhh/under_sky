@@ -1,5 +1,5 @@
 
-local sky_start = -100 -- black skybox displays under this depth
+local sky_start = tonumber(minetest.setting_get("sky_start") or -100)
 
 local player_list = {} 
 
