@@ -43,21 +43,22 @@ minetest.register_globalstep(function(dtime)
 
 		local ndef = minetest.registered_nodes[head_node]
 
+		local current = player_list[name] or ""
+
+		-- noclip
 		if (ndef.walkable == nil or ndef.walkable == true)
 		and (ndef.drowning == nil or ndef.drowning == 0)
 		and (ndef.damage_per_second == nil or ndef.damage_per_second <= 0)
 		and (ndef.collision_box == nil or ndef.collision_box.type == "regular")
 		and (ndef.node_box == nil or ndef.node_box.type == "regular") then
-			player:set_sky({type = "regular"})
-			player:set_clouds({density = 0.4})
-			player_list[name] = "surface"
-			return
-		end
-
-		local current = player_list[name] or ""
+			if current ~= "noclip" then
+				player:set_sky({type = "regular"})
+				player:set_clouds({density = 0})
+				player_list[name] = "noclip"
+			end
 
 		-- Surface
-		if pos.y > sky_start and current ~= "surface" then
+		elseif pos.y > sky_start and current ~= "surface" then
 			player:set_sky({type = "regular"})
 			player:set_clouds({density = 0.4})
 			player_list[name] = "surface"
