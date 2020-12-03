@@ -53,17 +53,26 @@ minetest.register_globalstep(function(dtime)
 		and (ndef.node_box == nil or ndef.node_box.type == "regular") then
 			if current ~= "noclip" then
 				player:set_sky({ type = "regular", clouds = false })
+				player:set_sun({ visible = false, sunrise_visible = false })
+				player:set_moon({ visible = false })
+				player:set_stars({ visible = false })
 				player_list[name] = "noclip"
 			end
 
 		-- Surface
 		elseif pos.y > sky_start and current ~= "surface" then
 			player:set_sky({ type = "regular", clouds = true })
+			player:set_sun({ visible = true, sunrise_visible = true })
+			player:set_moon({ visible = true })
+			player:set_stars({ visible = true })
 			player_list[name] = "surface"
 
 		-- Everything else (blackness)
 		elseif pos.y < sky_start and current ~= "blackness" then
 			player:set_sky({ base_color = "#000000", type = "plain", clouds = false })
+			player:set_sun({ visible = false, sunrise_visible = false })
+			player:set_moon({ visible = false })
+			player:set_stars({ visible = false })
 			player_list[name] = "blackness"
 		end
 	end
