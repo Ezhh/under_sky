@@ -1,5 +1,5 @@
 
-local sky_start = tonumber(minetest.setting_get("sky_start") or -100)
+local sky_start = tonumber(minetest.settings:get("sky_start") or -100)
 
 local player_list = {}
 
