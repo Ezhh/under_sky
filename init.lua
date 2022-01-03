@@ -5,6 +5,8 @@ local player_list = {}
 
 local timer = 0
 
+local skybox_restore = (minetest.get_modpath("skybox") ~= nil and skybox.restore ~= nil)
+
 local function node_ok(pos, fallback)
 	fallback = fallback or "air"
 	local node = minetest.get_node_or_nil(pos)
@@ -61,10 +63,14 @@ minetest.register_globalstep(function(dtime)
 
 		-- Surface
 		elseif pos.y > sky_start and current ~= "surface" then
-			player:set_sky({ type = "regular", clouds = true })
-			player:set_sun({ visible = true, sunrise_visible = true })
-			player:set_moon({ visible = true })
-			player:set_stars({ visible = true })
+			if skybox_restore then
+				skybox.restore(player)
+			else
+				player:set_sky({ type = "regular", clouds = true })
+				player:set_sun({ visible = true, sunrise_visible = true })
+				player:set_moon({ visible = true })
+				player:set_stars({ visible = true })
+			end
 			player_list[name] = "surface"
 
 		-- Everything else (blackness)
